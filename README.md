@@ -1,40 +1,79 @@
-# Entorno de virtualización Python
+# API Python - Cisco Packet Tracer
 
-# Pasos de instalación en Linux:
+Scripts en Python para interactuar con la API REST de Cisco Packet Tracer. Permite obtener tickets de autenticacion, consultar dispositivos de red y hosts.
 
-## 1. Clonación del proyecto
+## Estructura del proyecto
 
-Desde la terminal ejecutar:
+```
+├── src/
+│   ├── constants.py             # Configuracion (URL base, credenciales)
+│   ├── 01_get-ticket.py         # Obtener ticket de autenticacion
+│   ├── 02_get-network-device.py # Listar dispositivos de red
+│   ├── 03_get-host.py           # Listar hosts de la red
+│   └── 04_tabulate.py           # Vista completa en formato tabla
+├── .env                         # Variables de entorno (no se sube al repo)
+├── .env.template                # Plantilla de variables de entorno
+├── pyproject.toml               # Configuracion del proyecto y dependencias
+└── README.md
+```
 
-**git clone** <URL_del_repositorio> <nombre_de_la_carpeta_de_destino>
+## Scripts
 
-Luego ejecutar **cd** <nombre_de_la_carpeta_de_destino>. Esta carpeta será la raíz de nuestro proyecto en Python.
+| Script | Descripcion |
+|--------|-------------|
+| `01_get-ticket.py` | Autentica contra la API y obtiene un service ticket |
+| `02_get-network-device.py` | Consulta los dispositivos de red usando el token del `.env` |
+| `03_get-host.py` | Consulta los hosts conectados a la red |
+| `04_tabulate.py` | Obtiene ticket, dispositivos y hosts, mostrando todo en tablas formateadas |
 
-## 2. Creación del entorno virtual
+## Requisitos previos
 
-Supongamos que el nombre que le damos al entorno virtual es **cisco**, entonces se creará una carpeta **cisco** con todas las librerías y dependencias necesarias paea nuestro proyecto. 
+- Python 3.10+
+- [uv](https://docs.astral.sh/uv/) (gestor de paquetes)
+- Cisco Packet Tracer corriendo en `localhost:58000`
 
-La manera de realizarlo es la siguiente:
+## Instalacion
 
-# python3 -m venv <nombre_del_entorno>
-Ejemplo: python3 -m venv cisco
+### 1. Clonar el repositorio
 
-Para activar el entorno escribimos **source cisco/bin/activate**, en la carpeta raíz del proyecto. El nombre del entorno virtual aparecerá entre paréntesis ().
+```bash
+git clone <URL_del_repositorio>
+cd <nombre_de_la_carpeta>
+```
 
-## 3. Instalación de las dependencias, en este caso las librerías requests y tabulate
+### 2. Instalar dependencias con uv
 
-En la carpeta raíz de nuestro proyecto y dentro del entorno virtual escribimos: **pip install -r requirements.txt**
+```bash
+uv sync
+```
 
-## 4. Selección del intérprete Python para nuestro entorno virtual
+Esto crea un entorno virtual en `.venv/` e instala todas las dependencias automaticamente.
 
-<img width="881" height="118" alt="image" src="https://github.com/user-attachments/assets/18c41d8e-d338-48b6-953c-b2499c57319f" />
+### 3. Configurar variables de entorno
 
-<img width="736" height="412" alt="image" src="https://github.com/user-attachments/assets/2a795fcd-2cf8-47ef-a5a6-d21e09ce967f" />
+Copiar la plantilla y completar con tu token:
 
-Tal como se ve en la figura seleccionamos Python 3.10.12 (cisco) que se mostrará como entorno recomendado.
+```bash
+cp .env.template .env
+```
 
-## 5. Desactivación del entorno virtual
+Editar `.env` con tu token de autenticacion:
 
-Simplemente escribimos en la línea de comandos: **deactivate**
+```
+AUTH_TOKEN=tu_token_aqui
+```
 
+### 4. Ejecutar los scripts
 
+```bash
+uv run python src/01_get-ticket.py
+uv run python src/02_get-network-device.py
+uv run python src/03_get-host.py
+uv run python src/04_tabulate.py
+```
+
+## Dependencias
+
+- **requests** - Cliente HTTP para consumir la API REST
+- **tabulate** - Formateo de datos en tablas
+- **python-dotenv** - Carga de variables de entorno desde `.env`

@@ -1,14 +1,13 @@
-#Módulos que se usarán
+#Modulos que se usaran
 import requests #Para entender solicitudes
 import json #Para reconocer el formato json
 from tabulate import * #Para crear tablas
-
-baseUri = "http://localhost:58000/api/v1" #URL de PT
+from constants import API_BASE_URL, API_USERNAME, API_PASSWORD
 
 # Llamada al API por el ticket
 headers = {"Content-Type": "application/json"} #Headers
-data = json.dumps({"username": "cisco", "password": "cisco123!"}) #Credenciales
-resp = requests.post(baseUri+"/ticket", data=data, headers=headers) #URL específica
+data = json.dumps({"username": API_USERNAME, "password": API_PASSWORD}) #Credenciales
+resp = requests.post(API_BASE_URL+"/ticket", data=data, headers=headers) #URL especifica
 
 print("Status de Solicitud:")
 print(resp.status_code)
@@ -22,7 +21,7 @@ print(ticket)
 
 # Llamada al API para recibir los dispositivos de red
 headers = {"X-Auth-Token": ticket}
-resp = requests.get(baseUri+"/network-device", headers=headers) #URL específica
+resp = requests.get(API_BASE_URL+"/network-device", headers=headers) #URL especifica
 
 # print (resp.status_code)
 result = resp.json()
@@ -35,11 +34,11 @@ for item in result["response"]:
     host_list.append([i,item["hostname"],item["serialNumber"],item["softwareVersion"]])
     #print(item["hostname"]+" "+item["serialNumber"]+" "+item["softwareVersion"]) #Lista completa
 
-print(tabulate(host_list,headers=["Hostname","Serial Number","Software Version"],tablefmt='rst')) #Tabla ordenada 
+print(tabulate(host_list,headers=["Hostname","Serial Number","Software Version"],tablefmt='rst')) #Tabla ordenada
 
 # Llamada al API para recibir los host
 headers = {"X-Auth-Token": ticket }
-resp = requests.get(baseUri+"/host", headers=headers) #URL específica
+resp = requests.get(API_BASE_URL+"/host", headers=headers) #URL especifica
 
 # print (resp.status_code)
 result = resp.json()
@@ -52,4 +51,4 @@ for item in result["response"]:
     host_list.append([i,item["hostName"],item["hostType"],item["hostIp"]])
     #print(item["hostName"]+" "+item["hostType"]+" "+item["hostIp"]) #Lista completa
 
-print(tabulate(host_list,headers=["Hostname","Tipo","IP"],tablefmt='rst')) #Tabla ordenada 
+print(tabulate(host_list,headers=["Hostname","Tipo","IP"],tablefmt='rst')) #Tabla ordenada

@@ -1,0 +1,10 @@
+[project]
+name = "apipython"
+version = "0.1.0"
+description = "Scripts Python para interactuar con la API de Cisco Packet Tracer"
+requires-python = ">=3.10"
+dependencies = [
+    "requests",
+    "tabulate",
+    "python-dotenv",
+]

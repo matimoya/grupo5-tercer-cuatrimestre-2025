@@ -1,8 +1,14 @@
 import json
+import os
 import requests
-api_url = "http://localhost:58000/api/v1/network-device"
+from dotenv import load_dotenv
+from constants import API_BASE_URL
 
-headers={"X-Auth-Token": "NC-144-d131174a867340c3a5a8-nbi"}
+load_dotenv()
+
+api_url = API_BASE_URL + "/network-device"
+
+headers={"X-Auth-Token": os.getenv("AUTH_TOKEN")}
 
 resp = requests.get(api_url, headers=headers)
 
