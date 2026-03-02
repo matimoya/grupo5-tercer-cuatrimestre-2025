@@ -15,8 +15,7 @@ resp = requests.get(api_url, headers=headers, verify=False)
 print("Request status: ", resp.status_code)
 
 response_json = resp.json()
-print (response_json)
-print()
+print(json.dumps(response_json, indent=4))
 print()
 hosts = response_json["response"]
 

@@ -16,9 +16,7 @@ print("Request status: ", resp.status_code)
 
 response_json = resp.json()
 print()
-print()
-print (response_json)
-print()
+print(json.dumps(response_json, indent=4))
 print()
 networkDevices = response_json["response"]
 
