@@ -37,8 +37,8 @@ Scripts en Python para interactuar con la API REST de Cisco Packet Tracer. Permi
 ### 1. Clonar el repositorio
 
 ```bash
-git clone <URL_del_repositorio>
-cd <nombre_de_la_carpeta>
+git clone https://github.com/matimoya/grupo5-tercer-cuatrimestre-2025.git
+cd grupo5-tercer-cuatrimestre-2025
 ```
 
 ### 2. Instalar dependencias con uv
