@@ -28,28 +28,48 @@ Scripts en Python para interactuar con la API REST de Cisco Packet Tracer. Permi
 
 ## Requisitos previos
 
+- [Visual Studio Code](https://code.visualstudio.com/) (editor de codigo)
 - Python 3.10+
 - [uv](https://docs.astral.sh/uv/) (gestor de paquetes)
 - Cisco Packet Tracer corriendo en `localhost:58000`
 
 ## Instalacion
 
-### 1. Clonar el repositorio
+### 1. Abrir el proyecto en Visual Studio Code
+
+1. Abrir **Visual Studio Code**
+2. Ir a **Archivo > Abrir carpeta** (o `Ctrl + K` seguido de `Ctrl + O`)
+3. Seleccionar la carpeta del proyecto
+
+### 2. Abrir la terminal integrada
+
+Para ejecutar los comandos que siguen, necesitas abrir la **terminal** dentro de VSCode:
+
+- Ir a **Terminal > Nueva terminal** en el menu superior
+- O usar el atajo de teclado: `` Ctrl + ` `` (la tecla debajo del `Esc`)
+
+Se va a abrir un panel en la parte inferior de VSCode donde podes escribir comandos.
+
+### 3. Clonar el repositorio
+
+En la terminal, escribir:
 
 ```bash
 git clone https://github.com/matimoya/grupo5-tercer-cuatrimestre-2025.git
 cd grupo5-tercer-cuatrimestre-2025
 ```
 
-### 2. Instalar dependencias con uv
+> **Nota:** `git clone` descarga el proyecto y `cd` entra a la carpeta descargada.
+
+### 4. Instalar dependencias con uv
 
 ```bash
 uv sync
 ```
 
-Esto crea un entorno virtual en `.venv/` e instala todas las dependencias automaticamente.
+Esto crea un entorno virtual en `.venv/` e instala todas las dependencias automaticamente. No hace falta hacer nada mas.
 
-### 3. Configurar variables de entorno
+### 5. Configurar variables de entorno
 
 Copiar la plantilla y completar con tu token:
 
@@ -57,13 +77,15 @@ Copiar la plantilla y completar con tu token:
 cp .env.template .env
 ```
 
-Editar `.env` con tu token de autenticacion:
+Luego abrir el archivo `.env` desde el explorador de archivos de VSCode (panel izquierdo) y reemplazar `your_auth_token` con tu token real:
 
 ```
 AUTH_TOKEN=tu_token_aqui
 ```
 
-### 4. Ejecutar los scripts
+### 6. Ejecutar los scripts
+
+En la terminal de VSCode, escribir cualquiera de estos comandos:
 
 ```bash
 uv run python src/01_get-ticket.py
@@ -71,6 +93,8 @@ uv run python src/02_get-network-device.py
 uv run python src/03_get-host.py
 uv run python src/04_tabulate.py
 ```
+
+> **Tip:** Podes usar la flecha hacia arriba en la terminal para repetir el ultimo comando ejecutado.
 
 ## Dependencias
 
