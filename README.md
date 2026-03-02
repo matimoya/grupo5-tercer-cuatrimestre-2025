@@ -71,17 +71,19 @@ Esto crea un entorno virtual en `.venv/` e instala todas las dependencias automa
 
 ### 5. Configurar variables de entorno
 
-Copiar la plantilla y completar con tu token:
+El token de autenticacion se obtiene al ejecutar el script `01_get-ticket.py` (ver paso 6). Una vez que lo tengas, copiar la plantilla y completar con tu token:
 
 ```bash
 cp .env.template .env
 ```
 
-Luego abrir el archivo `.env` desde el explorador de archivos de VSCode (panel izquierdo) y reemplazar `your_auth_token` con tu token real:
+Luego abrir el archivo `.env` desde el explorador de archivos de VSCode (panel izquierdo) y reemplazar `your_auth_token` con el token obtenido:
 
 ```
-AUTH_TOKEN=tu_token_aqui
+AUTH_TOKEN=NC-xx-xxxxxxxxxx-nbi
 ```
+
+> **Nota:** Los scripts `02`, `03` y `04` necesitan este token para funcionar. El script `01` es el que lo genera.
 
 ### 6. Ejecutar los scripts
 
